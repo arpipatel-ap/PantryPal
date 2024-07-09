@@ -9,7 +9,7 @@ const RegisterForm = () =>{
   return (
     <div className="wrapper">
        <div className="form-container">
-      <form action = "">
+      <form action="/users/register" method="POST">
         <h1>Register</h1>
         <div className="input-box">
           <input type ="text" placeholder="Email" required />
@@ -24,6 +24,8 @@ const RegisterForm = () =>{
           <RiLockPasswordFill className="icon"/>
         </div>
         <button type ="submit">Register</button>
+
+        //use AJAX 
         
       </form>
       </div>
