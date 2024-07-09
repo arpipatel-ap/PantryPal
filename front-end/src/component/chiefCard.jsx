@@ -1,6 +1,4 @@
 
-
-
 export default function ChiefCard({chief}) {
     return (
         <div className="chief-card">

@@ -4,7 +4,7 @@ const CustomImage = ({imgSrc, pt}) =>{
   
   return (
     <div className="custom-image" style={{paddingTop: pt}}>
-      <img src ={imgSrc} alt= "custom"></img>
+       <img src={imgSrc} alt="" style={{ width: '100%', objectfit: 'cover' }} />
   </div>
   );
 }

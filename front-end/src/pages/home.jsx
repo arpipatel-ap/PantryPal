@@ -1,14 +1,14 @@
 import {useState} from "react";
-import NavBar from "./navbar";
-import ImproveSkill from "./improveskills";
-import QouteSection from "./qoutesection";
+import NavBar from "../component/navbar";
+import ImproveSkill from "../component/improveskills";
+import QouteSection from "../component/qoutesection";
 import '../style/navbar.scss';
 import '../style/home.scss';
 import '../style/footer.scss';
 import { GiHamburgerMenu } from "react-icons/gi";
-import Summery from "./summery";
-import ChiefsSection from "./chiefsSection";
-import Footer from "./footer";
+import Summery from "../component/summery";
+import ChiefsSection from "../component/chiefsSection";
+import Footer from "../component/footer";
 
 
 

@@ -37,15 +37,27 @@
   }
 }
 
+// .custom-image {
+//   // background-color: red;
+//   border-radius: 3px;
+//    overflow: hidden;
+//   height: 0;
+//   width: 100%;
+//   position: relative;
+//   transform: scale(0);
+//   opacity: 0;
+//   animation: popOut 0.3s forwards;
+// }
+
 .custom-image {
   background-color: red;
   border-radius: 3px;
-  // overflow: hidden;
-  height: 0;
-  width: 100%;
+  overflow: hidden;
+  height: auto; 
+  max-width: 100%; 
   position: relative;
-  transform: scale(0);
-  opacity: 0;
+  transform: scale(1); 
+  opacity: 1; 
   animation: popOut 0.3s forwards;
 }
 

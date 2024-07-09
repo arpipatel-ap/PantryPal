@@ -1,0 +1,120 @@
+.main{
+  padding-inline: 16vw;
+ 
+}
+
+
+.recipes-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  grid-gap: 1.5em;
+  padding-bottom: 40px;
+}
+
+.recipe-card {
+  isolation: isolate;
+  border-radius: 5px;
+  overflow: hidden;
+  box-shadow: 0 5px 15px var(--shadow-color);
+  background-color: var(--background-color);
+
+  .recipe-card-info {
+    padding: 15px;
+    position: relative; 
+  }
+
+  .custom-image {
+    z-index: -1;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+
+  .auther-img {
+    height: 60px;
+    width: 60px;
+    border-radius: 50%;
+    border: 3px solid var(--background-light);
+    box-shadow: 0 1px 3px var(--shadow-color);
+    margin-top: -50px;
+    z-index: 2;
+  }
+  .save-icon {
+    position: absolute;
+    top: 10px; /* Adjust top position as needed */
+    right: 10px; /* Adjust right position as needed */
+   
+    font-size: 1.4em; /* Adjust icon size */
+  }
+
+
+  .recipe-title {
+    font-size: 1.25em;
+    font-weight: bold;
+    margin-bottom: 0.5em;
+    color: var(--text-color);
+    margin-top: 0.25em;
+  }
+
+  .recipe-desc {
+    color: var(--text-light);
+    font-size: 0.9em;
+    letter-spacing: 1px;
+  }
+
+  .view-btn {
+    font-size: 1em;
+    font-weight: bold;
+    color: var(--primary-color);
+    margin-top: 0.75em;
+    display: inline-block;
+  }
+  .like-comment {
+    display: flex;
+    align-items: center;
+    margin-top: 0.5em;
+    cursor: pointer; 
+    padding-top: 13px;
+    
+    svg {
+      font-size: 1.4em; 
+      margin-right: 25px; 
+       
+    }
+  }
+}
+
+
+
+.search-box {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Center horizontally */
+  height: 50px; /* Increased height */
+  width: 50%; /* Set width as needed */
+  margin: 0 auto; /* Center horizontally */
+  padding: 0 1em; /* Padding on the sides */
+  
+  input, .btn {
+    height: 100%; /* Full height */
+    box-sizing: border-box; /* Include padding and border in total width/height */
+  }
+  
+  input {
+    flex: 1; /* Take remaining space */
+    min-width: 280px; /* Minimum width for the input */
+    padding: 0 .5em;
+    border-radius: 5px 0 0 5px;
+    outline: none;
+    border: 1px solid #4d4d4d;
+  }
+  
+  .btn {
+    padding: 0 .75em; /* Adjusted padding for the button */
+    border-radius: 0 5px 5px 0;
+    background-color: var(--primary-color); /* Example background color */
+    color: white; /* Example text color */
+    border: none; /* Example no border */
+    cursor: pointer; /* Example cursor style */
+  }
+}
