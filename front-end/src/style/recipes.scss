@@ -2,8 +2,6 @@
   padding-inline: 16vw;
  
 }
-
-
 .recipes-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -11,7 +9,6 @@
   padding-bottom: 40px;
   
 }
-
 .recipe-card {
   isolation: isolate;
   border-radius: 5px;
@@ -47,7 +44,6 @@
    
     font-size: 1.4em; /* Adjust icon size */
   }
-
 
   .recipe-title {
     font-size: 1.25em;

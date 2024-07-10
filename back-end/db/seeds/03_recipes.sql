@@ -32,3 +32,5 @@ VALUES
 (10, 'Macaroni and Cheese', 'Creamy and cheesy pasta.', 'Macaroni, Cheese, Milk, Butter, Flour', '1. Cook macaroni. 2. Make cheese sauce. 3. Combine and bake.', 'https://sugarspunrun.com/wp-content/uploads/2023/03/Easy-mac-and-cheese-recipe-1-of-1-500x500.jpg',2, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
 (1, 'Pumpkin Pie', 'Traditional fall dessert.', 'Pumpkin, Sugar, Eggs, Cream, Spices, Pie crust', '1. Mix filling ingredients. 2. Pour into crust. 3. Bake.', 'https://www.browneyedbaker.com/wp-content/uploads/2020/09/pumpkin-pie-11-square-500x500.jpg',3, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
 (2, 'Sangria', 'Fruity Spanish wine punch.', 'Red wine, Orange juice, Brandy, Fruit, Soda water', '1. Mix wine and juice with brandy. 2. Add fruit and chill. 3. Add soda before serving.', 'https://www.wellplated.com/wp-content/uploads/2023/06/Pitcher-Red-Sangria-Recipe-500x500.jpg',5, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+
+

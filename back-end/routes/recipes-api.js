@@ -1,22 +1,43 @@
 const express = require('express');
 const router = express.Router();
+const pool = require('../db/connection');
 const userQueries = require('../db/queries/recipe');
-//  const { redirect } = require('react-router-dom');
 
 
 //get recipes from database
-router.get('/', async (req, res) => {
-  userQueries.getRecipeById(req.session.userId)
-    .then(recipes => {
-      res.render('recipes', {recipes: recipes, user: req.session.userId});
-    }).catch(error => {
-      res.status(400).json({ message: error.message });
-    });
-});
-
-//get all recipes without user id
-router.get('/all', async (req, res) => {
-  userQueries.getAllRecipes()
+router.get('/recipes', async (req, res) => {
+  try {
+    const client = await pool.connect();
+    const result = await client.query(`
+      SELECT r.title, r.description, r.img, u.profile_pic as profile_pic
+      FROM recipes r
+      JOIN users u ON r.user_id = u.user_id;
+      `);
+      const recipes = result.rows;
+      client.release();
+      res.json(recipes);
+    } catch (err) {
+      console.error('Error fetching recipes:', err.message);
+      res.status(500).json({ error: 'Failed to fetch recipes' });
+    }
+  });
+  
+  //search recipes by title, ingredients, or directions
+  router.get('/search', async (req, res) => {
+    const { query } = req.query;
+  
+    try {
+      const recipes = await userQueries.searchRecipes(query);
+      res.json(recipes); // Send the recipes back as JSON
+    } catch (error) {
+      console.error('Error fetching recipes:', error.message);
+      res.status(500).json({ message: 'Server error' });
+    }
+  });
+  
+  //get all recipes without user id
+  router.get('/all', async (req, res) => {
+    userQueries.getAllRecipes()
     .then(recipes => {
       res.render('recipes', {recipes: recipes, user: req.session.userId});
     }).catch(error => {
@@ -118,15 +139,7 @@ router.get('/category/:category', async (req, res) => {
     });
 });
 
-//search recipes by title, ingredients, or directions
-router.get('/search/:query', async (req, res) => {
-  userQueries.searchRecipes(req.params.query)
-    .then(recipes => {
-      res.render('recipes', {recipes: recipes, user: req.session.userId});
-    }).catch(error => {
-      res.status(400).json({ message: error.message });
-    });
-});
+
 
 
 

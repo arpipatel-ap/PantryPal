@@ -1,4 +1,4 @@
-import {useState} from "react";
+import {useState, useEffect} from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
 import NavBar from "../component/navbar";
 import Footer from "../component/footer";
@@ -8,96 +8,55 @@ import '../style/navbar.scss';
 import '../style/footer.scss';
 import '../style/recipes.scss';
 
-import img1 from "../Assets/img_1.jpg";
-import img2 from "../Assets/img_2.jpg";
-import image from "../Assets/image.jpg";
-
-
-
 const Recipes = () =>{
   const [showNav, setShowNav] = useState(false)
-  const recipes = [
-    {
-        title: "Chicken Pan Pizza",
-        image: image,
-        authorImg: img2,
-    }, 
-    {
-        title: "Spaghetti and Meatballs",
-        image: image,
-        authorImg: img2,
-    },
-    {
-        title: "American Cheese Burger",
-       image: image,
-        authorImg: img2,
-    },
-    {
-        title: "Mutton Biriyani",
-        image: image,
-        authorImg: img2,
-    },
-    {
-        title: "Japanese Sushi",
-        image: image,
-        authorImg: img2,
-    },
-    {
-        title: "Chicken Pan Pizza",
-        image: image,
-        authorImg: img2,
-    }, 
-    {
-        title: "Spaghetti and Meatballs",
-        image: image,
-        authorImg: img2,
-    },
-    {
-        title: "American Cheese Burger",
-        image: image,
-        authorImg: img2,
-    },
-    {
-        title: "Mutton Biriyani",
-        image: image,
-        authorImg: img2,
-    },
-    {
-        title: "Japanese Sushi",
-        image: image,
-        authorImg: img2,
-    },
-    {
-        title: "American Cheese Burger",
-        image: image,
-        authorImg: img2,
-    },
-    {
-        title: "Mutton Biriyani",
-        image: image,
-        authorImg: img2,
-    }
-].sort(() => Math.random() - 0.5)
-  return (
+  const [recipes, setRecipes] = useState([]);
 
+//   useEffect(() => {
+//     async function fetchRecipes() {
+//       try {
+//         // const response = await fetch('/recipes/recipes'); // Fetch recipes from your backend
+
+
+const fetchRecipes = async (query = '') => {
+    try {
+        const endpoint = query ? `/recipes/search?query=${query}` : '/recipes/recipes';
+      const response = await fetch(endpoint);
+        if (response.ok) {
+          const data = await response.json();
+          setRecipes(data); // Update recipes state with fetched data
+        } else {
+          console.error('Failed to fetch recipes:', response.statusText);
+        }
+      } catch (error) {
+        console.error('Error fetching recipes:', error.message);
+      }
+    }
+    useEffect(() => {
+        fetchRecipes(); // Fetch all recipes initially
+      }, []);
+    
+      const handleSearch = (query) => {
+        fetchRecipes(query); // Fetch recipes based on search query
+      }
+  return (
     <div className="content">
       <header>
-        <GiHamburgerMenu  onClick={() => setShowNav(!showNav)}/>
-        <a href ="#!" className="logo" >Pantry<span>Pal</span></a>
+        <GiHamburgerMenu onClick={() => setShowNav(!showNav)} />
+        <a href="#!" className="logo"> Pantry<span>Pal</span>
+        </a>
       </header>
-      <NavBar show ={showNav} /> 
+      <NavBar show={showNav} />
       <div className="main">
-        <Search />
-            <div className="recipes-container">
-                {/* <RecipeCard /> */}
-                {recipes.map((recipe, index) => (
-                    <RecipeCard key={index} recipe={recipe} />
-                ))}
-            </div>
+      <Search onSearch={handleSearch} />
+        <div className="recipes-container">
+          {recipes.map((recipe, index) => (
+            <RecipeCard key={index} recipe={recipe} />
+          ))}
+        </div>
       </div>
       <Footer />
     </div>
-  
   );
 }
 
