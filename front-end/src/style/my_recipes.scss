@@ -9,6 +9,7 @@
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   grid-gap: 1.5em;
   padding-bottom: 40px;
+  padding-top: 40px;
   
 }
 
@@ -82,40 +83,5 @@
       margin-right: 25px; 
        
     }
-  }
-}
-
-
-
-.search-box {
-  display: flex;
-  align-items: center;
-  justify-content: center; /* Center horizontally */
-  height: 50px; /* Increased height */
-  width: 50%; /* Set width as needed */
-  margin: 0 auto; /* Center horizontally */
-  padding: 0 1em; /* Padding on the sides */
-  
-  input, .btn {
-    height: 100%; /* Full height */
-    box-sizing: border-box; /* Include padding and border in total width/height */
-  }
-  
-  input {
-    flex: 1; /* Take remaining space */
-    min-width: 280px; /* Minimum width for the input */
-    padding: 0 .5em;
-    border-radius: 5px 0 0 5px;
-    outline: none;
-    border: 1px solid #4d4d4d;
-  }
-  
-  .btn {
-    padding: 0 .75em; /* Adjusted padding for the button */
-    border-radius: 0 5px 5px 0;
-    background-color: var(--primary-color); /* Example background color */
-    color: white; /* Example text color */
-    border: none; /* Example no border */
-    cursor: pointer; /* Example cursor style */
   }
 }

@@ -7,20 +7,27 @@ router.get("/login", (req, res) => {
 });
 
 router.post("/login", (req, res) => {
-  const { email, password } = req.body;
+  const { username, password } = req.body;
   userQueries
-    .getUserByEmail(email)
+    .getUserByUsername(username)
     .then((user) => {
       if (!user) {
-        return res.send({ error: "no user with that email" });
+        return res.status(404).json({ error: "User not found" });
       }
-      console.log(user.password);
       if (password !== user.password) {
-        return res.send({ error: "error" });
+        return res.status(401).json({ error: "Incorrect password" });
       }
 
-      req.session.userId = user.id;
-      res.redirect("/main");
+      req.session.userId = user.id; 
+      res.send({ 
+        id: user.id,
+        username: user.username,
+        profile_pic: user.profile_pic
+      });
+    })
+    .catch((err) => {
+      console.error("Error:", err);
+      res.status(500).json({ error: "Server error" });
     });
 });
 
@@ -29,12 +36,16 @@ router.get('/register', (req, res) => {
 });
 
 router.post("/register", (req, res) => {
-  const { name, email, password, phone } = req.body;
+  const { username, email, password} = req.body;
   userQueries
-    .addUser(name, email, password, phone)
+    .addUser({username, email, password})
     .then((user) => {
       req.session.userId = user.id;
-      res.redirect("/main");
+      res.send({ 
+        id: user.id,
+        username: user.username,
+        email: user.email
+      });
     })
     .catch((err) => res.send(err));
 });

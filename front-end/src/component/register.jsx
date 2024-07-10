@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import '../style/register.scss';
 import { FaUser } from "react-icons/fa";
 import { RiLockPasswordFill } from "react-icons/ri";
@@ -6,23 +7,70 @@ import { MdEmail } from "react-icons/md";
 
 
 const RegisterForm = () =>{
+  const [email, setEmail] = useState('');
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const response = await fetch('/users/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ username, email, password }),
+      });
+
+      const data = await response.json();
+      console.log(data);
+      if (response.ok) {
+        navigate('/recipes');
+        console.log('Registration successful');
+      } else {
+        // Registration failed, handle the error
+        console.error('Registration failed:', data.error);
+       
+      }
+    } catch (error) {
+      console.error('Error registering:', error);
+      setError('Registration failed: ' + error.message );
+    }
+  };
   return (
     <div className="wrapper">
        <div className="form-container">
-      <form action="/users/register" method="POST">
+       <form onSubmit={handleSubmit}>
         <h1>Register</h1>
         <div className="input-box">
-          <input type ="text" placeholder="Email" required />
+          <input type ="text"
+           placeholder="Email" 
+           value={email}
+           onChange={(e) => setEmail(e.target.value)}
+           required />
           <MdEmail className="icon" />
         </div>
         <div className="input-box">
-          <input type ="text" placeholder="Username" required />
+          <input type ="text"
+           placeholder="Username"
+           value={username}
+            onChange={(e) => setUsername(e.target.value)}
+           required />
           <FaUser className="icon"/>
         </div>
         <div className="input-box">
-          <input type ="password" placeholder="Password" required />
+          <input type ="password" 
+          placeholder="Password" 
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          required />
           <RiLockPasswordFill className="icon"/>
-        </div>
+        </div><br />
+        {error && <p className="error-message">{error}</p>}
+        <br />
         <button type ="submit">Register</button>
 
         //use AJAX 

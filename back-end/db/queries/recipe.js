@@ -11,7 +11,7 @@ const addRecipe = function(newRecipe) {
 };
   
 
-//get recipe by id
+//get recipe by user id
 const getRecipeById = function(id) {
   return db.query(
     'SELECT * FROM recipes WHERE id = $1;', [id])
@@ -22,8 +22,8 @@ const getRecipeById = function(id) {
     });
 };
 
-//get recipes
-const getRecipes = function() {
+//get all recipes
+const getAllRecipes = function() {
   return db.query(
     'SELECT * FROM recipes ORDER BY id DESC LIMIT 10;')
     .then(data => {
@@ -66,38 +66,6 @@ const deleteRecipe = function(id) {
     });
 };
 
-//filter recipes by title
-const filterRecipesByTitle = function(title) {
-  return db.query(
-    `SELECT * FROM recipes WHERE title ILIKE $1;`, ['%' + title + '%'])
-    .then(data => {
-      return data.rows;
-    }).catch((err) => {
-      console.log(err.message);
-    });
-};
-
-//filter recipes by ingredients
-const filterRecipesByIngredients = function(ingredients) {
-  return db.query(
-    `SELECT * FROM recipes WHERE ingredients ILIKE $1;`, ['%' + ingredients + '%'])
-    .then(data => {
-      return data.rows;
-    }).catch((err) => {
-      console.log(err.message);
-    });
-};
-
-//filter recipes by directions
-const filterRecipesByDirections = function(directions) {
-  return db.query(
-    `SELECT * FROM recipes WHERE directions ILIKE $1;`, ['%' + directions + '%'])
-    .then(data => {
-      return data.rows;
-    }).catch((err) => {
-      console.log(err.message);
-    });
-};
 
 //filter by category
 const filterRecipesByCategory = function(category) {
@@ -110,4 +78,15 @@ const filterRecipesByCategory = function(category) {
     });
 };
 
-module.exports = { addRecipe, getRecipeById, getRecipes, getRecipesByUserId, editRecipe, deleteRecipe, filterRecipesByTitle, filterRecipesByIngredients, filterRecipesByDirections, filterRecipesByCategory };
+//search recipes by title, ingredients, or directions
+const searchRecipes = function(query) {
+  return db.query(
+    `SELECT * FROM recipes WHERE title ILIKE $1 OR ingredients ILIKE $1 OR directions ILIKE $1;`, ['%' + query + '%'])
+    .then(data => {
+      return data.rows;
+    }).catch((err) => {
+      console.log(err.message);
+    });
+};
+
+module.exports = { addRecipe, getRecipeById, getAllRecipes, getRecipesByUserId, editRecipe, deleteRecipe, searchRecipes,filterRecipesByCategory };
