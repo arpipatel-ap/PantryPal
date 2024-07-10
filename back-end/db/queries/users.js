@@ -1,33 +1,22 @@
 const db = require('../connection');
 
-//add new user
-// const addUser = function(newUser) {
-//   return db.query(
-//     'INSERT INTO users (username, email, password, profile_pic, bio ) VALUES ($1, $2, $3, $4, $5) RETURNING *;', 
-//     [newUser.username, newUser.email, newUser.password, newUser.profile_pic, newUser.bio])
-//     .then(data => {
-//       return data.rows[0];
-//     }).catch((err) => {
-//       console.log(err.message);
-//     });
-// };
-
+//add user
 const addUser = function(newUser) {
   return db.query(
     'INSERT INTO users (username, email, password, profile_pic, bio) VALUES ($1, $2, $3, $4, $5) RETURNING *',
     [newUser.username, newUser.email, newUser.password, newUser.profile_pic, newUser.bio]
   )
-  .then(data => {
-    if (data.rows.length > 0) {
-      return data.rows[0]; // Return the first row (inserted user)
-    } else {
-      throw new Error('No user inserted');
-    }
-  })
-  .catch(err => {
-    console.error('Error inserting user:', err.message);
-    throw err; // Propagate the error for handling in the calling code
-  });
+    .then(data => {
+      if (data.rows.length > 0) {
+        return data.rows[0]; // Return the first row (inserted user)
+      } else {
+        throw new Error('No user inserted');
+      }
+    })
+    .catch(err => {
+      console.error('Error inserting user:', err.message);
+      throw err; // Propagate the error for handling in the calling code
+    });
 };
 
 //get user by email

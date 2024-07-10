@@ -20,20 +20,7 @@ app.use(session({
   cookie: { secure: false } // Adjust for production environment
 }));
 
-function read(file) {
-  return new Promise((resolve, reject) => {
-    fs.readFile(
-      file,
-      {
-        encoding: "utf-8"
-      },
-      (error, data) => {
-        if (error) return reject(error);
-        resolve(data);
-      }
-    );
-  });
-}
+
 
 const usersRoutes = require('./routes/users-api');
 const recipeRoutes = require('./routes/recipes-api');
