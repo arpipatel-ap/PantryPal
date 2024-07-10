@@ -16,10 +16,10 @@ header {
   box-shadow: 0 3px 6px var(--shadow-color);
   background-color: var(--background-color);
   color: var(--text-color);
-  padding: 20px 20px;
+  padding: 20px 70px;
   height: 70px;
   .logo{
-    font-size: 1.9em;
+    font-size: 2.5em;
     font-weight: bolder;
     color: var(--primary-color );
     text-decoration: none;
@@ -27,6 +27,7 @@ header {
     padding: 20px 140px;
     span{
       color: var(--text-color);
+     
     }
 
 
