@@ -1,9 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const pool = require('../db/connection');
 const userQueries = require('../db/queries/recipe');
-const multer = require('multer');
-const path = require('path');
 
 
 //get recipes from database
@@ -37,24 +34,26 @@ router.get('/add_recipes', (req, res) => {
   res.render('add_recipes', {user: req.session.userId});
 });
 
-router.post('/add',  (req, res) => {
+router.post('/add_recipes',  (req, res) => {
   const userId = req.session.userId;
  
   if (!userId) {
     return res.send({ error: "error" });
   }
-  const newRecipe = {
-    name: req.body.name,
-    ingredients: req.body.ingredients,
-    description: req.body.description,
-    user_id: userId,
-    img: req.body.img
-  }
-  newRecipe.user_id = userId;
-
-  userQueries.addRecipe(newRecipe)
-    .then(recipe => {
-      res.json(recipe);
+  const {title, ingredients, description, directions, image} = req.body;
+  
+  
+  userQueries.addRecipe({title,  ingredients, description,directions, image, userId})
+    .then((recipe) => {
+      res.send({
+        id: recipe.id,
+        title: recipe.title,
+        ingredients: recipe.ingredients,
+        description: recipe.description,
+        directions: recipe.directions,
+        image: recipe.image,
+        userId: recipe.userId
+      });
     }).catch(error => {
       res.status(400).json({ message: error.message });
     });

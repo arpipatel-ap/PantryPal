@@ -4,7 +4,7 @@ import '../style/add_recipes.scss';
 
 export default function Form() {
   const [recipe, setRecipe] = useState({
-    name: '',
+    title: '',
     ingredients: '',
     description: '',
     image: null
@@ -26,7 +26,7 @@ export default function Form() {
     // Handle form submission
     console.log(recipe);
     try {
-      const response = await fetch('/add', {
+      const response = await fetch('/add_recipes', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -38,15 +38,15 @@ export default function Form() {
       console.log(data);
       if (response.ok) {
         navigate('/recipes');
-        console.log('Registration successful');
+        console.log('Add recipe successful');
       } else {
         // Registration failed, handle the error
-        console.error('Registration failed:', data.error);
+        console.error('Add recipe failed:', data.error);
        
       }
     } catch (error) {
-      console.error('Error registering:', error);
-      setError('Registration failed: ' + error.message );
+      console.error('Error adding recipe:', error);
+      setError('Add recipe failed: ' + error.message );
     }
 
   };
@@ -58,8 +58,8 @@ export default function Form() {
         <label>Name of the Recipe</label>
         <input
           type="text"
-          name="name"
-          value={recipe.name}
+          name="title"
+          value={recipe.title}
           onChange={handleInputChange}
         />
       </div>

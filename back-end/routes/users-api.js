@@ -41,7 +41,7 @@ router.post("/register", (req, res) => {
     .addUser({username, email, password})
     .then((user) => {
       req.session.userId = user.id;
-      res.send({ 
+      res.send({
         id: user.id,
         username: user.username,
         email: user.email

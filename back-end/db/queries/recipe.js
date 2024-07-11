@@ -3,8 +3,8 @@ const db = require('../connection');
 // add new recipe
 const addRecipe = function(newRecipe) {
   return db.query(
-    `INSERT INTO recipes (title, description, ingredients, directions, user_id) VALUES ($1, $2, $3, $4, $5) RETURNING *;`,
-    [newRecipe.title, newRecipe.description, newRecipe.ingredients, newRecipe.directions, newRecipe.user_id]
+    `INSERT INTO recipes (title, description, ingredients, directions, user_id, img) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *;`,
+    [newRecipe.title, newRecipe.description, newRecipe.ingredients, newRecipe.directions, newRecipe.user_id, newRecipe.img]
   )
     .then(data => {
       return data.rows[0];
@@ -91,7 +91,12 @@ const filterRecipesByCategory = function(category) {
 // search recipes by title, ingredients, or directions
 const searchRecipes = function(query) {
   return db.query(
-    `SELECT * FROM recipes WHERE title ILIKE $1 OR ingredients ILIKE $1 OR directions ILIKE $1;`,
+    `SELECT recipes.title, recipes.description, recipes.img, users.profile_pic as profile_pic
+     FROM recipes
+     JOIN users ON recipes.user_id = users.user_id
+     WHERE recipes.title ILIKE $1 
+     OR recipes.ingredients ILIKE $1 
+     OR recipes.directions ILIKE $1;`,
     ['%' + query + '%']
   )
     .then(data => {
