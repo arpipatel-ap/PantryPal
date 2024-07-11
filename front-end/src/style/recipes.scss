@@ -101,6 +101,7 @@
     flex: 1; /* Take remaining space */
     min-width: 280px; /* Minimum width for the input */
     padding: 0 .5em;
+    font-size: 1em;
     border-radius: 5px 0 0 5px;
     outline: none;
     border: 1px solid #4d4d4d;
@@ -115,3 +116,7 @@
     cursor: pointer; /* Example cursor style */
   }
 }
+.liked {
+  color: red;  /* Change this to whatever color you prefer */
+}
+

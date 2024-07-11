@@ -11,8 +11,6 @@ import ChiefsSection from "../component/chiefsSection";
 import Footer from "../component/footer";
 
 
-
-
 const Home = () =>{
   const [showNav, setShowNav] = useState(false)
   return (
@@ -20,7 +18,7 @@ const Home = () =>{
     <div className="content">
       <header>
         <GiHamburgerMenu  onClick={() => setShowNav(!showNav)}/>
-        <a href ="#!" className="logo" >Pantry<span>Pal</span></a>
+        <a href ="/" className="logo" >Pantry<span>Pal</span></a>
       </header>
       <NavBar show ={showNav} /> 
       <div className="main">

@@ -13,11 +13,11 @@ const NavBar = ({show, isLoggedIn }) =>{
         <li><a href="/">Home</a></li>
         {isLoggedIn ? (
           <>
-            <li><a href="/profile">Profile</a></li>
-            <li><a href="/my-recipes">My Recipes</a></li>
-            <li><a href="/add-recipe">Add Recipe</a></li>
-            <li><a href="/saved">Saved</a></li>
-            <li><a href="/update-profile">Categries</a></li>
+            <li><a href="#!">Profile</a></li>
+            <li><a href="/my_recipes">My Recipes</a></li>
+            <li><a href="/add_recipes">Add Recipe</a></li>
+            <li><a href="/saved_recipes">Saved</a></li>
+            <li><a href="#!">Categries</a></li>
             <li><a href="/logout">Logout</a></li>
           </>
         ) : (

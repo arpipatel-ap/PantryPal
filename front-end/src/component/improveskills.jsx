@@ -1,6 +1,7 @@
 import React from 'react';
 import '../style/home.scss'; 
 import backgroundImg from '../Assets/image.jpg'; 
+import { Link } from 'react-router-dom';
 
 export default function ImproveSkill() {
   const list = [
@@ -21,7 +22,9 @@ export default function ImproveSkill() {
         {list.map((item, index) => (
           <p className='skill-item' key={index}>{item}</p>
         ))}
-        <button className="btn">Sign Up</button>
+        <Link to="/register">
+      <button className="btn">Sign Up</button>
+    </Link>
       </div>
     </div>
   );

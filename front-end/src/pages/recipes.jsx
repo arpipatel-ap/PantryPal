@@ -8,14 +8,9 @@ import '../style/navbar.scss';
 import '../style/footer.scss';
 import '../style/recipes.scss';
 
-const Recipes = () =>{
+const Recipes = ({userId}) =>{
   const [showNav, setShowNav] = useState(false)
   const [recipes, setRecipes] = useState([]);
-
-//   useEffect(() => {
-//     async function fetchRecipes() {
-//       try {
-//         // const response = await fetch('/recipes/recipes'); // Fetch recipes from your backend
 
 
 const fetchRecipes = async (query = '') => {
@@ -43,7 +38,7 @@ const fetchRecipes = async (query = '') => {
     <div className="content">
       <header>
         <GiHamburgerMenu onClick={() => setShowNav(!showNav)} />
-        <a href="#!" className="logo"> Pantry<span>Pal</span>
+        <a href="/" className="logo"> Pantry<span>Pal</span>
         </a>
       </header>
       <NavBar show={showNav} />
@@ -51,7 +46,7 @@ const fetchRecipes = async (query = '') => {
       <Search onSearch={handleSearch} />
         <div className="recipes-container">
           {recipes.map((recipe, index) => (
-            <RecipeCard key={index} recipe={recipe} />
+            <RecipeCard key={index} recipe={recipe}  userId={userId}/>
           ))}
         </div>
       </div>

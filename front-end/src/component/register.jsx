@@ -4,6 +4,7 @@ import '../style/register.scss';
 import { FaUser } from "react-icons/fa";
 import { RiLockPasswordFill } from "react-icons/ri";
 import { MdEmail } from "react-icons/md";
+import { Link } from 'react-router-dom';
 
 
 const RegisterForm = () =>{
@@ -68,12 +69,11 @@ const RegisterForm = () =>{
           onChange={(e) => setPassword(e.target.value)}
           required />
           <RiLockPasswordFill className="icon"/>
-        </div><br />
-        {error && <p className="error-message">{error}</p>}
-        <br />
+        </div>
         <button type ="submit">Register</button>
-
-        //use AJAX 
+        <div className="login-link">
+        <p>Already have an account? <Link to="/login">Login</Link></p>
+        </div>
         
       </form>
       </div>
