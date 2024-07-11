@@ -1,5 +1,5 @@
 import { useState } from 'react';
-
+import { useNavigate } from "react-router-dom";
 import '../style/add_recipes.scss'; 
 
 export default function Form() {
@@ -9,6 +9,8 @@ export default function Form() {
     description: '',
     image: null
   });
+  const [error, setError] = useState('');
+  const navigate = useNavigate();
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -19,10 +21,34 @@ export default function Form() {
     setRecipe({ ...recipe, image: e.target.files[0] });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     // Handle form submission
     console.log(recipe);
+    try {
+      const response = await fetch('/add', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(recipe),
+      });
+
+      const data = await response.json();
+      console.log(data);
+      if (response.ok) {
+        navigate('/recipes');
+        console.log('Registration successful');
+      } else {
+        // Registration failed, handle the error
+        console.error('Registration failed:', data.error);
+       
+      }
+    } catch (error) {
+      console.error('Error registering:', error);
+      setError('Registration failed: ' + error.message );
+    }
+
   };
   return (
     <div className="add-recipes">

@@ -1,7 +1,7 @@
 INSERT INTO users (username, email, password, profile_pic, bio, created_at, updated_at)
 VALUES 
-('john_doe', 'john@example.com', 'password123', 'https://unsplash.com/photos/a-man-wearing-glasses-and-a-plaid-shirt-tB5ZZtHZ_tI', 'Love cooking!', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-('jane_smith', 'jane@example.com', 'password456', 'https://unsplash.com/photos/a-man-in-a-yellow-shirt-smiling-at-the-camera-ZjDbRtR_BcE', 'Baking enthusiast.', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+('john_doe', 'john@example.com', 'password123', 'https://plus.unsplash.com/premium_photo-1689977968861-9c91dbb16049?q=80&w=2970&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', 'Love cooking!', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+('jane_smith', 'jane@example.com', 'password456', 'https://plus.unsplash.com/premium_photo-1689539137236-b68e436248de?q=80&w=2971&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', 'Baking enthusiast.', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
 ('mike_lee', 'mike@example.com', 'password789', 'https://img.freepik.com/free-photo/young-man-worried-expression_1194-1619.jpg?size=626&ext=jpg', 'Home cook with a passion for Italian cuisine.', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
 ('emily_clark', 'emily@example.com', 'password012', 'https://img.freepik.com/free-photo/front-view-smiley-woman-with-earbuds_23-2148613052.jpg?size=626&ext=jpg', 'Vegan food blogger.', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
 ('samuel_green', 'samuel@example.com', 'password345', 'https://img.freepik.com/premium-photo/portrait-young-man_1048944-24360939.jpg?size=626&ext=jpg', 'Grill master and BBQ enthusiast.', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
