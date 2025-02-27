@@ -4,7 +4,7 @@ PantryPal addresses the challenge of culinary exploration and community engageme
 
 # Downloading the project
 
-Fork and clone this repo
+Fork and clone this repo for download code in your system
 
 ## Final Products
 
